@@ -1,53 +1,51 @@
 package org.example;
 
-import java.util.Arrays;
-
 public class Company {
-    private long id;
+    private int id;
     private String name;
     private double giro;
     private String[] developerNames;
 
-    public Company(long id, String name, double giro, String[] developerNames) {
-        if(giro < 0){
-            this.giro = 0;
-        } else {
-            this.giro = giro;
-        }
-        this.id = id;
-        this.name = name;
-        this.developerNames = developerNames;
+    public int getId() {
+        return id;
     }
 
-    public long getId() {
-        return id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public double getGiro() {
-        return giro;
-    }
-
-    public String[] getDeveloperNames() {
-        return developerNames;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getGiro() {
+        return giro;
     }
 
     public void setGiro(double giro) {
         this.giro = giro;
     }
 
+    public String[] getDeveloperNames() {
+        return developerNames;
+    }
+
     public void setDeveloperNames(String[] developerNames) {
+        this.developerNames = developerNames;
+    }
+
+    public Company(int id, String name, double giro, String[] developerNames) {
+        this.id = id;
+        this.name = name;
+        if (giro >= 0) {
+            this.giro = giro;
+        } else {
+            throw new IllegalArgumentException("Giro değeri 0'dan küçük olamaz.");
+        }
         this.developerNames = developerNames;
     }
 
@@ -61,15 +59,4 @@ public class Company {
             System.out.println("Bu indeks zaten dolu: " + index);
         }
     }
-
-    @Override
-    public String toString() {
-        return "Company{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", giro=" + giro +
-                ", developerNames=" + Arrays.toString(developerNames) +
-                '}';
-    }
-
 }
